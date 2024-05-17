@@ -10,6 +10,10 @@ if [ $user_answer = "y" ]
     echo "Pass trimmomatic arguments (SLIDINGWINDOW:4:20 included)"
     read trimm_args
 
+    if  [ ! -d "trimm_data" ]; then
+    mkdir trimm_data
+    fi
+   
     # Parsing files to arrays
     files_1=()
     files_2=()
@@ -36,4 +40,8 @@ if [ $user_answer = "y" ]
 
         trimmomatic PE $file1 $file2 trimmed_${file1} unpaired_${file1} trimmed_${file2} unpaired_${file2} SLIDINGWINDOW:4:20 $trimm_args
     done
+
+    mv unpaired_* trimmed_data
+    mv trimmed_* trimm_data
+    
 fi
