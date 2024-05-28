@@ -23,4 +23,5 @@ if [ $checker = 0 ]; then
     fi
 
     multiqc --outdir multiqc_run  --title ngs_project
+    open multiqc_run/ngs_project.html
 fi
