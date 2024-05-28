@@ -41,7 +41,7 @@ if [ $user_answer = "y" ]
         trimmomatic PE $file1 $file2 trimmed_${file1} unpaired_${file1} trimmed_${file2} unpaired_${file2} SLIDINGWINDOW:4:20 $trimm_args
     done
 
-    mv unpaired_* trimmed_data
+    mv unpaired_* trimm_data
     mv trimmed_* trimm_data
     
 fi
