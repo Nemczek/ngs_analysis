@@ -28,6 +28,10 @@ if ls ./index* 1> /dev/null 2>&1; then
 
 fi
 
+if  [ ! -d "bam_data" ]; then
+    mkdir bam_data
+fi
+
 files_1=()
 files_2=()
 
@@ -53,6 +57,7 @@ if [ $checker = 0 ]; then
         file1=${files_1[$index]}
         file2=${files_2[$index]}
 
-        bwa mem data/ref.fa ${file1} ${file2} > ${file1}.sam
+        bwa mem data/ref.fa ${file1} ${file2} | samtools view -bS -@ 2 - > bam_data/${file1}.bam
+
     done
 fi
