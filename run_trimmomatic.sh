@@ -38,10 +38,10 @@ if [ $user_answer = "y" ]
         file1=${files_1[$index]}
         file2=${files_2[$index]}
 
-        trimmomatic PE $file1 $file2 trimmed_${file1} unpaired_${file1} trimmed_${file2} unpaired_${file2} SLIDINGWINDOW:4:20 $trimm_args
+        trimmomatic PE $file1 $file2 paired_${file1} unpaired_${file1} paired_${file2} unpaired_${file2} SLIDINGWINDOW:4:20 $trimm_args
     done
 
     mv unpaired_* trimm_data
-    mv trimmed_* trimm_data
+    mv paired_* trimm_data
     
 fi
