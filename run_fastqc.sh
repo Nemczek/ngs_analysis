@@ -12,10 +12,23 @@ if ls "fastqc_run"/*.fastqc 1> /dev/null 2>&1; then
 
     if [ $user_answer = "y" ]; then
         rm fastqc_run/*.fastqc
+        rm fastqc_run/*.html
     fi
 fi
 
-# Run fastqc
-fastqc -o fastqc_run ./data/*.fastq.gz
+echo "Would you like to run the process on trimmed data? (y/n)"
+    read user_input
+    if [ "$user_input" != "y" ]; then
+        echo "Running FastQC..."
+        fastqc -o fastqc_run ./data/*.fastq.gz
+        else
+            echo "Running FastQC..." 
+            fastqc -o fastqc_run ./trimm_data/*.fq
+    fi
+    
+    if [ $? -ne 0 ]; then
+        echo "FastQC failed. Exiting."
+        exit 1
+    fi
 
 

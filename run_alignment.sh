@@ -23,11 +23,6 @@ if [ $checker -eq 0 ]; then
 fi
 
 # Check if there is an index in folder
-checker=1
-if ls ./index* 1> /dev/null 2>&1; then
-    checker=0 
-fi
-
 if [ ! -d "bam_data" ]; then
     mkdir bam_data
 fi

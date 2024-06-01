@@ -66,6 +66,3 @@ else
     echo "Exiting"
     exit 0
 fi
-
-mv unpaired_* trimm_data
-mv paired_* trimm_data
