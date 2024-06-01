@@ -21,7 +21,6 @@ if [ $checker = 0 ]; then
         if [ $user_answer = "y" ]; then
             rm -rf ./multiqc_run/*
         fi
-
-        multiqc --outdir multiqc_run  --title ngs_project ./fastqc_run/
     fi 
+    multiqc --outdir multiqc_run --title ngs_project ./fastqc_run/
 fi 
