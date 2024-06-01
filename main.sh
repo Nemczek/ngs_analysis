@@ -89,4 +89,23 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+
+# Run Bcftools
+echo "Running bcftools..."
+bash run_bcftools.sh
+if [ $? -ne 0 ]; then
+    echo "bcftools failed. Exiting."
+    exit 1
+fi
+
+
+# Run snpEff
+echo "Running snpEff..."
+bash run_snpeff.sh
+if [ $? -ne 0 ]; then
+    echo "snpEff failed. Exiting."
+    exit 1
+fi
+
+
 echo "Pipeline completed successfully."
