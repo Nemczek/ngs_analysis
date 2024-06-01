@@ -16,6 +16,6 @@ if ls "fastqc_run"/*.fastqc 1> /dev/null 2>&1; then
 fi
 
 # Run fastqc
-fastqc -o fastqc_run ./data/*.f*
+fastqc -o fastqc_run ./data/*.fastq.gz
 
 
