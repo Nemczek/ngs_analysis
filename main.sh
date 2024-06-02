@@ -81,13 +81,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Run FreeBayes
-echo "Running FreeBayes..."
-bash run_freeBayes.sh
-if [ $? -ne 0 ]; then
-    echo "FreeBayes failed. Exiting."
-    exit 1
-fi
 
 
 # Run Bcftools
@@ -107,5 +100,21 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+
+# Run FreeBayes
+echo "Running FreeBayes..."
+bash run_freeBayes.sh
+if [ $? -ne 0 ]; then
+    echo "FreeBayes failed. Exiting."
+    exit 1
+fi
+
+
+echo "Running snpEff..."
+bash run_FBsnpeff.sh
+if [ $? -ne 0 ]; then
+    echo "snpEff failed. Exiting."
+    exit 1
+fi
 
 echo "Pipeline completed successfully."
