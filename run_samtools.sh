@@ -30,6 +30,8 @@ for index in "${!files[@]}"; do
 	
    	samtools sort "$file" -o ./sorted_data/${base}.sorted.bam
     samtools index ./sorted_data/${base}.sorted.bam
-    
+    satools markdup ./sorted_data/${base}.sorted.bam
+    samtools flagstat ./sorted_data/${base}.sorted.bam
+    samtools depth ./sorted_data/${base}.sorted.bam
 
 done

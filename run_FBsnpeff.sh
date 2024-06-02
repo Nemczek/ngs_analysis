@@ -9,8 +9,9 @@ if [ $user_answer = "y" ]; then
 fi
 
 # If there is filtered variants file 
-if ls "bfctools_run"/bfctools_vf.vcf &>/dev/null; then
+if ls "freebayes_run"/freebayes_vf.vcf &>/dev/null; then
     # Annotate
-    snpEff -v Penicillium_chrysogenum_gca_000710275 ./bfctools_run/bfctools_vf.vcf > bfc_annotated.vcf
-    mv bfc_annotated ./data
+    snpEff -v Penicillium_chrysogenum_gca_000710275 ./freebayes_run/freebayes_vf.vcf > FB_annotated.vcf
+    mv FB_annotated ./data
 fi
+
