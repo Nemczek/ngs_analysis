@@ -18,7 +18,7 @@ if [ -z "$BAM_FILES" ]; then
 fi
 
 # Uruchom bcftools mpileup z zebranymi plikami BAM
-bcftools mpileup -Ou -f "$REF_FA" $BAM_FILES | bcftools call -vmO z -o ./bfctools_run/bfctools.vcf.gz
+bcftools mpileup --threads 4 -Ou -f "$REF_FA" $BAM_FILES | bcftools call --threads 4 -vmO z -o ./bfctools_run/bfctools.vcf.gz
 
 
 

@@ -28,10 +28,10 @@ for index in "${!files[@]}"; do
     echo "Base name: $base"
 # Run samtools
 	
-   	samtools sort "$file" -o ./sorted_data/${base}.sorted.bam
-    samtools index ./sorted_data/${base}.sorted.bam
-    satools markdup ./sorted_data/${base}.sorted.bam
-    samtools flagstat ./sorted_data/${base}.sorted.bam
-    samtools depth ./sorted_data/${base}.sorted.bam
+   	samtools sort -@ 4 "$file" -o ./sorted_data/${base}.sorted.bam
+    samtools index -@ 4 ./sorted_data/${base}.sorted.bam
+    samtools markdup -@ 4 ./sorted_data/${base}.sorted.bam
+    samtools flagstat -@ 4 ./sorted_data/${base}.sorted.bam
+    samtools depth -@ 4 ./sorted_data/${base}.sorted.bam
 
 done

@@ -10,6 +10,17 @@ sleep 3
 echo "Do you want to proceed ? (y/n)"
 read user_answer
 
+# If there are any files in folder, ask if user wants to delete them
+if ls "trimm_data"/*.fq 1> /dev/null 2>&1; then
+    echo "Do you want to delete all files in directory? (y/n)"
+    read user_answer
+
+    if [ $user_answer = "y" ]; then
+        rm trimm_data/*.fq
+        rm trimm_data/*.fq
+    fi
+fi
+
 if [ "$user_answer" = "y" ]; then
     echo "Pass trimmomatic arguments (SLIDINGWINDOW:4:20 included)"
     read trimm_args
