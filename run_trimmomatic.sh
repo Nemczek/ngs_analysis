@@ -63,7 +63,7 @@ if [ "$user_answer" = "y" ]; then
         echo "Base names: $base1 and $base2"
 
         echo "Trimmomatic PE $file1 $file2"
-        trimmomatic PE "$file1" "$file2" "paired_${base1}.fq" "unpaired_${base1}.fq" "paired_${base2}.fq" "unpaired_${base2}.fq" SLIDINGWINDOW:4:20 $trimm_args
+        trimmomatic PE "$file1" "$file2" "paired_${base1}.fq.gz" "unpaired_${base1}.fq.gz" "paired_${base2}.fq.gz" "unpaired_${base2}.fq.gz" SLIDINGWINDOW:4:20 $trimm_args
         if [ $? -ne 0 ]; then
             echo "Trimmomatic failed. Exiting"
             exit 1

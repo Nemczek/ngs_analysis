@@ -8,6 +8,14 @@ for BAM in sorted_data/*sorted.bam; do
     freebayes -f data/ref.fa -q 30 -b $BAM > freebayes_run/${SAMPLE_NAME}.vcf
 done
 
+BAM_FOLDER="./sorted_data"
+BAM_FILES=$(ls "$BAM_FOLDER"/*.sorted.bam | tr '\n' ' ')
+
+
+freebayes \
+	--fasta-reference data/ref.fa \
+	--bam-list $BAM_FILES \
+	-- vcf ./freebayes_run/freebayes.vcf \
 
 # Check if there is vcf file
 if ls "freebayes_run"/*.vcf &>/dev/null; then

@@ -56,6 +56,6 @@ for index in "${!files_1[@]}"; do
     # Debug: print file names and base names
     echo "Processing files: $file1 and $file2"
     echo "Base names: $base1 and $base2"
-    bwa mem -t 4 ./data/ref.fa "$file1" "$file2" | samtools view -bS -@ 4 - > ./bam_data/${base1}.bam
+    bwa mem -t 9 ./data/ref.fa "$file1" "$file2" | samtools view -bS -@ 9 - > ./bam_data/${base1}.bam
     
 done

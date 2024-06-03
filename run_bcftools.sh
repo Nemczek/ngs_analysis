@@ -18,12 +18,12 @@ if [ -z "$BAM_FILES" ]; then
 fi
 
 # Uruchom bcftools mpileup z zebranymi plikami BAM
-bcftools mpileup --threads 4 -Ou -f "$REF_FA" $BAM_FILES | bcftools call --threads 4 -vmO z -o ./bfctools_run/bfctools.vcf.gz
+bcftools mpileup --threads 9 -Ou -f "$REF_FA" $BAM_FILES | bcftools call --threads 9 -vmO z -o ./bfctools_run/bfctools.vcf.gz
 
 
 
 # Check if there is vcf file
-if ls "bfctools_run"/*.vcf &>/dev/null; then
+if ls "bfctools_run"/*.vcf.gz &>/dev/null; then
     # If true, run bcf tools to variants with quality > 20
-    bcftools filter -i 'QUAL > 20' ./bfctools_run/freebayes_output.vcf -o ./bfctools_run/bfctools_vf.vcf 
+    bcftools filter -i 'QUAL > 20' ./bfctools_run/bfctools.vcf.gz -o ./bfctools_run/bfctools_vf.vcf 
 fi
