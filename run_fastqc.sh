@@ -23,7 +23,7 @@ echo "Would you like to run the process on trimmed data? (y/n)"
         fastqc -o fastqc_run ./data/*.fastq.gz
         else
             echo "Running FastQC..." 
-            fastqc -o fastqc_run ./trimm_data/*.fq
+            fastqc -o fastqc_run ./trimm_data/paired_*.fq.gz
     fi
     
     if [ $? -ne 0 ]; then

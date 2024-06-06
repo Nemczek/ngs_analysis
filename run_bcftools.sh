@@ -1,15 +1,15 @@
 #!/bin/bash
 
-mkdir -p bfctools_run
+mkdir -p vcf
 
 # Ścieżka do folderu z plikami BAM
-BAM_FOLDER="./sorted_bam"
+BAM_FOLDER="./sorted_data"
 
 # Ścieżka do pliku referencyjnego
 REF_FA="./data/ref.fa"
 
 # Znajdź wszystkie pliki BAM w folderze i połącz je w jedną linię
-BAM_FILES=$(ls "$BAM_FOLDER"/*.sorted.bam | tr '\n' ' ')
+BAM_FILES=$(ls ${BAM_FOLDER}/*.sorted.bam)
 
 # Sprawdź, czy znaleziono pliki BAM
 if [ -z "$BAM_FILES" ]; then
@@ -17,13 +17,7 @@ if [ -z "$BAM_FILES" ]; then
   exit 1
 fi
 
-# Uruchom bcftools mpileup z zebranymi plikami BAM
-bcftools mpileup --threads 9 -Ou -f "$REF_FA" $BAM_FILES | bcftools call --threads 9 -vmO z -o ./bfctools_run/bfctools.vcf.gz
 
+bcftools mpileup --threads 9 -Ou -f "$REF_FA" $BAM_FOLDER/*.sorted.bam | bcftools call --threads 9 --ploidy 1 -vmO z -o vcf/bfc_penycilinum_chrysogenum_variants.vcf
 
-
-# Check if there is vcf file
-if ls "bfctools_run"/*.vcf.gz &>/dev/null; then
-    # If true, run bcf tools to variants with quality > 20
-    bcftools filter -i 'QUAL > 20' ./bfctools_run/bfctools.vcf.gz -o ./bfctools_run/bfctools_vf.vcf 
-fi
+#mv bfc_penycilinum* vcf

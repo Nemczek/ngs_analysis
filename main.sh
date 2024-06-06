@@ -82,21 +82,20 @@ if [ $? -ne 0 ]; then
 fi
 
 
+# Run Samtools
+echo "Running qualimap..."
+bash run_qualimap.sh
+if [ $? -ne 0 ]; then
+    echo "qualimap failed. Exiting."
+    exit 1
+fi
+
 
 # Run Bcftools
 echo "Running bcftools..."
 bash run_bcftools.sh
 if [ $? -ne 0 ]; then
     echo "bcftools failed. Exiting."
-    exit 1
-fi
-
-
-# Run snpEff
-echo "Running snpEff..."
-bash run_snpeff.sh
-if [ $? -ne 0 ]; then
-    echo "snpEff failed. Exiting."
     exit 1
 fi
 
@@ -110,10 +109,26 @@ if [ $? -ne 0 ]; then
 fi
 
 
+echo "Filtring..."
+bash run_filter.sh
+if [ $? -ne 0 ]; then
+    echo "Filtring failed. Exiting."
+    exit 1
+fi
+
+
+# Run snpEff
 echo "Running snpEff..."
-bash run_FBsnpeff.sh
+bash run_snpeff.sh
 if [ $? -ne 0 ]; then
     echo "snpEff failed. Exiting."
+    exit 1
+fi
+
+echo "Filtering Variants..."
+bash run_variant_filter.sh
+if [ $? -ne 0 ]; then
+    echo "Filtering Variants. Exiting."
     exit 1
 fi
 

@@ -51,8 +51,8 @@ for index in "${!files_1[@]}"; do
     file1=${files_1[$index]}
     file2=${files_2[$index]}
     # Extract base names without extensions
-    base1=$(basename "$file1" .fq)
-    base2=$(basename "$file2" .fq)
+    base1=$(basename "$file1" _1.fq.gz)
+    base2=$(basename "$file2" _2.fq.gz)
     # Debug: print file names and base names
     echo "Processing files: $file1 and $file2"
     echo "Base names: $base1 and $base2"
